@@ -1,13 +1,16 @@
 module.exports = {
   siteMetadata: {
-    title: "portfolio",
+    title: "Hedone",
+    description: "Hedone's portfolio",
+    author: `Hedone`,
+    siteUrl: "https://hedone.surge.sh",
   },
   plugins: [
     "gatsby-plugin-styled-components",
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: "G-GQB3F7Z804",
+        trackingId: "G-NWSYGST5K4",
       },
     },
     "gatsby-plugin-sharp",
