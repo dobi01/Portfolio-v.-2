@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useRef, useState } from 'react';
+import { Canvas, useFrame } from 'react-three-fiber';
 
 import Button from './components/Button';
 import Layout from './components/layout';
@@ -12,6 +13,35 @@ const headingStyles = {
   maxWidth: 320,
 };
 
+const Box = props => {
+  // This reference will give us direct access to the mesh so we can animate it
+  const mesh = useRef();
+
+  // Set up state for the hovered and active state
+  const [hovered, setHover] = useState(false);
+  const [active, setActive] = useState(false);
+
+  // Rotate mesh every frame, this is outside of React without overhead
+  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
+
+  return (
+    <mesh
+      {...props}
+      ref={mesh}
+      scale={active ? [2, 2, 2] : [1, 1, 1]}
+      onClick={e => setActive(!active)}
+      onPointerOver={e => setHover(true)}
+      onPointerOut={e => setHover(false)}
+    >
+      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+      <meshStandardMaterial
+        attach="material"
+        color={hovered ? 'hotpink' : 'orange'}
+      />
+    </mesh>
+  );
+};
+
 const IndexPage = () => {
   return (
     <Layout>
@@ -20,6 +50,12 @@ const IndexPage = () => {
         <h1 style={headingStyles}>Hell yeah</h1>
         <Button>Normal Button</Button>
         <Button primary>Primary Button</Button>
+        <Canvas>
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+          <Box position={[-1.2, 0, 0]} />
+          <Box position={[1.2, 0, 0]} />
+        </Canvas>
       </main>
     </Layout>
   );
