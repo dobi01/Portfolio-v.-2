@@ -6,9 +6,17 @@ import '@fontsource/audiowide';
 import SEO from './Seo';
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Audiowide";
+  },
   body {
     color: ${props => (props.theme === 'red' ? 'red' : 'white')};
-    font-family: "Audiowide";
+    position: relative;
+    height: 100vh;
+    width: 100vw;
   }
 `;
 export default function Layout({ children }) {
