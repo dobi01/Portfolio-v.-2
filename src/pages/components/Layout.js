@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
     height: 100vh;
     width: 100vw;
+    backgroundColor: #f0f0f0;
   }
 `;
 export default function Layout({ children }) {
