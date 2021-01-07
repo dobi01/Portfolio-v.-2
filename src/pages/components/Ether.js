@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import React, { useRef, useMemo, useState } from 'react';
-import { Canvas, useFrame, useLoader } from 'react-three-fiber';
+import { Canvas, useFrame } from 'react-three-fiber';
 import { EffectComposer, SSAO } from 'react-postprocessing';
 
 const canvasStyles = {
@@ -21,7 +21,7 @@ function Swarm({ count, mouse }) {
       const t = Math.random() * 100;
       const factor = 20 + Math.random() * 100;
       const speed = 0.01 + Math.random() / 200;
-      const xFactor = -20 + Math.random() * 40;
+      const xFactor = 20 + Math.random() * 40;
       const yFactor = -20 + Math.random() * 40;
       const zFactor = -20 + Math.random() * 40;
       temp.push({ t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0 });
@@ -68,7 +68,7 @@ function Swarm({ count, mouse }) {
         args={[null, null, count]}
         castShadow
         receiveShadow
-        scale={[1, 2, 1]}
+        scale={[0.75, 1.5, 0.75]}
       >
         <octahedronBufferGeometry args={[4, 0]} />
         <meshPhongMaterial />
@@ -77,7 +77,7 @@ function Swarm({ count, mouse }) {
   );
 }
 
-export default function App() {
+export default function Ether() {
   return (
     <Canvas
       style={canvasStyles}
@@ -94,7 +94,7 @@ export default function App() {
         <SSAO
           samples={31}
           radius={20}
-          intensity={40}
+          intensity={90}
           luminanceInfluence={0.1}
           color="blue"
         />

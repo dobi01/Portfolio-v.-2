@@ -1,14 +1,22 @@
 import styled, { css } from 'styled-components';
 
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin: 0.5em 1em;
-  padding: 0.25em 1em;
+const Button = styled.a`
+  color: #b7b5fc;
+  font-family: 'Audiowide';
+  font-size: 2rem;
+  display: inline-block;
+  margin-top: 7rem;
+  transition: all 0.3s ease-in-out;
 
-  ${props =>
+  &:hover,
+  &:active {
+    cursor: pointer;
+    transform: scale(1.1);
+    text-shadow: 0 -1px 4px #fff, 0 -2px 10px #b7b5fc, 0 -10px 20px #b7b5fc,
+      0 -18px 40px #b7b5fc;
+  }
+
+  ${(props) =>
     props.primary &&
     css`
       background: palevioletred;

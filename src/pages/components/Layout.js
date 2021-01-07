@@ -10,10 +10,12 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Audiowide";
+    font-family: "Open Sans";
+    font-weight: 100;
+    color: #76768B;
   },
   body {
-    color: ${props => (props.theme === 'red' ? 'red' : 'white')};
+    // color: ${(props) => (props.theme === 'red' ? 'red' : 'white')};
     position: relative;
     height: 100vh;
     width: 100vw;
