@@ -11,7 +11,7 @@ const canvasStyles = {
   left: 0,
 };
 
-function Swarm({ count, mouse }) {
+function Swarm({ count, mouse, onHoverHandle }) {
   const mesh = useRef();
   const [dummy] = useState(() => new THREE.Object3D());
 
@@ -54,6 +54,7 @@ function Swarm({ count, mouse }) {
           Math.cos((t / 10) * factor) +
           (Math.sin(t * 3) * factor) / 10
       );
+      dummy.rotation.set(0, s, 0);
       dummy.scale.set(s, s, s);
       dummy.updateMatrix();
       mesh.current.setMatrixAt(i, dummy.matrix);
@@ -69,6 +70,8 @@ function Swarm({ count, mouse }) {
         castShadow
         receiveShadow
         scale={[0.75, 1.5, 0.75]}
+        onPointerOver={(e) => onHoverHandle(true)}
+        onPointerOut={(e) => onHoverHandle(false)}
       >
         <octahedronBufferGeometry args={[4, 0]} />
         <meshPhongMaterial />
@@ -78,6 +81,12 @@ function Swarm({ count, mouse }) {
 }
 
 export default function Ether() {
+  const [active, setActive] = useState(true);
+
+  const onHoverHandle = (isHover) => {
+    setActive(isHover);
+  };
+
   return (
     <Canvas
       style={canvasStyles}
@@ -88,8 +97,12 @@ export default function Ether() {
     >
       <ambientLight intensity={1.5} />
       <pointLight position={[100, 100, 100]} intensity={2} castShadow />
-      <pointLight position={[-100, -100, -100]} intensity={15} color="blue" />
-      <Swarm count={9} />
+      {active ? (
+        <pointLight position={[-100, -100, -100]} intensity={15} color="blue" />
+      ) : (
+        <pointLight position={[-100, -100, -100]} intensity={15} color="red" />
+      )}
+      <Swarm count={9} onHoverHandle={(isHover) => onHoverHandle(isHover)} />
       <EffectComposer multisampling={0}>
         <SSAO
           samples={31}

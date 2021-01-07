@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'gatsby';
 
-const Button = styled.a`
+const Button = styled(Link)`
   color: #b7b5fc;
   font-family: 'Audiowide';
+  text-decoration: none;
   font-size: 2rem;
-  display: inline-block;
-  margin-top: 7rem;
   transition: all 0.3s ease-in-out;
 
   &:hover,

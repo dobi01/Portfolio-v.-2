@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.ul`
   position: fixed;
   top: 3%;
-  left: 3%;
+  right: 3%;
   z-index: 100;
   display: flex;
   list-style-type: none;

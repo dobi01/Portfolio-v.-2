@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Button from './Button';
-
 const Container = styled.div`
   position: absolute;
   z-index: 100;
@@ -28,10 +26,6 @@ const H3 = styled.h3`
   margin-top: 0.3rem;
 `;
 
-const buttonStyle = {
-  'margin-left': '15rem',
-};
-
 export default function Hero(props) {
   return (
     <Container>
@@ -42,7 +36,6 @@ export default function Hero(props) {
       </H1>
       <H2>an image a day</H2>
       <H3>by Dobi Okrasa</H3>
-      <Button style={buttonStyle}>explore >>></Button>
     </Container>
   );
 }
