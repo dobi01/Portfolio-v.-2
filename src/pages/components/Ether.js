@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import React, { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame } from 'react-three-fiber';
 import { EffectComposer, SSAO } from 'react-postprocessing';
+import { useSpring } from '@react-spring/core';
+import { a } from '@react-spring/three';
 
 const canvasStyles = {
   height: '100vh',
@@ -14,6 +16,13 @@ const canvasStyles = {
 function Swarm({ count, mouse, onHoverHandle }) {
   const mesh = useRef();
   const [dummy] = useState(() => new THREE.Object3D());
+  const [active, setActive] = useState(0);
+
+  const { spring } = useSpring({
+    spring: active,
+  });
+
+  const color = spring.to([0, 1], ['#ffffffFF', '#C0F6CC']);
 
   const particles = useMemo(() => {
     const temp = [];
@@ -70,22 +79,29 @@ function Swarm({ count, mouse, onHoverHandle }) {
         castShadow
         receiveShadow
         scale={[0.75, 1.5, 0.75]}
-        onPointerOver={(e) => onHoverHandle(true)}
-        onPointerOut={(e) => onHoverHandle(false)}
+        onPointerOver={(e) => onHoverHandle(1)}
+        onPointerOut={(e) => onHoverHandle(0)}
+        onClick={() => setActive(Number(!active))}
       >
         <octahedronBufferGeometry args={[4, 0]} />
-        <meshPhongMaterial />
+        <a.meshPhongMaterial color={color} />
       </instancedMesh>
     </>
   );
 }
 
 export default function Ether() {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(0);
 
   const onHoverHandle = (isHover) => {
     setActive(isHover);
   };
+
+  const { spring } = useSpring({
+    spring: active,
+  });
+
+  const color = spring.to([0, 1], ['#007B7B', '#7B0059']);
 
   return (
     <Canvas
@@ -97,11 +113,11 @@ export default function Ether() {
     >
       <ambientLight intensity={1.5} />
       <pointLight position={[100, 100, 100]} intensity={2} castShadow />
-      {active ? (
-        <pointLight position={[-100, -100, -100]} intensity={15} color="blue" />
-      ) : (
-        <pointLight position={[-100, -100, -100]} intensity={15} color="red" />
-      )}
+      <a.pointLight
+        position={[-100, -100, -100]}
+        intensity={30}
+        color={color}
+      />
       <Swarm count={9} onHoverHandle={(isHover) => onHoverHandle(isHover)} />
       <EffectComposer multisampling={0}>
         <SSAO
