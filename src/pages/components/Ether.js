@@ -13,10 +13,15 @@ const canvasStyles = {
   left: 0,
 };
 
-function Swarm({ count, mouse, onHoverHandle }) {
+function Swarm({ count, mouse, onHoverHandle, onClickHandle }) {
   const mesh = useRef();
   const [dummy] = useState(() => new THREE.Object3D());
   const [active, setActive] = useState(0);
+
+  const onClick = () => {
+    onClickHandle(!active);
+    setActive(Number(!active));
+  };
 
   const { spring } = useSpring({
     spring: active,
@@ -81,7 +86,7 @@ function Swarm({ count, mouse, onHoverHandle }) {
         scale={[0.75, 1.5, 0.75]}
         onPointerOver={(e) => onHoverHandle(1)}
         onPointerOut={(e) => onHoverHandle(0)}
-        onClick={() => setActive(Number(!active))}
+        onClick={onClick}
       >
         <octahedronBufferGeometry args={[4, 0]} />
         <a.meshPhongMaterial color={color} />
@@ -90,11 +95,15 @@ function Swarm({ count, mouse, onHoverHandle }) {
   );
 }
 
-export default function Ether() {
+export default function Ether(props) {
   const [active, setActive] = useState(0);
 
-  const onHoverHandle = (isHover) => {
-    setActive(isHover);
+  const onHoverHandle = (isHovered) => {
+    setActive(isHovered);
+  };
+
+  const onClickHandle = (isClicked) => {
+    props.onClicked(isClicked);
   };
 
   const { spring } = useSpring({
@@ -118,7 +127,11 @@ export default function Ether() {
         intensity={30}
         color={color}
       />
-      <Swarm count={9} onHoverHandle={(isHover) => onHoverHandle(isHover)} />
+      <Swarm
+        count={9}
+        onHoverHandle={(isHovered) => onHoverHandle(isHovered)}
+        onClickHandle={(isClicked) => onClickHandle(isClicked)}
+      />
       <EffectComposer multisampling={0}>
         <SSAO
           samples={31}
