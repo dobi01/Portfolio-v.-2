@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100vw;
     backgroundColor: #f0f0f0;
+    backface-visibility: hidden;
   }
 `;
 export default function Layout({ children }) {

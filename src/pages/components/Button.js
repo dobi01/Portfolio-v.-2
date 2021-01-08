@@ -7,11 +7,12 @@ const Button = styled(Link)`
   text-decoration: none;
   font-size: 2rem;
   transition: all 0.3s ease-in-out;
+  backface-visibility: hidden;
 
   &:hover,
   &:active {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.05) rotate(0.02deg);
     text-shadow: 0 -1px 4px #fff, 0 -2px 10px #b7b5fc, 0 -10px 20px #b7b5fc,
       0 -18px 40px #b7b5fc;
   }

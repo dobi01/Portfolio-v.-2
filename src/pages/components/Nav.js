@@ -13,6 +13,10 @@ const Container = styled.ul`
 
 const Separator = styled.span`
   padding: 0 0.3rem;
+
+  &:last-child {
+    display: none;
+  }
 `;
 
 const LinkWithHover = styled(Link)`
@@ -26,44 +30,41 @@ const LinkWithHover = styled(Link)`
   }
 `;
 
+const links = [
+  {
+    to: '/',
+    label: 'Home',
+  },
+  {
+    to: '/gallery/',
+    label: 'Gallery',
+  },
+  {
+    to: '#',
+    label: 'Buy my artwork',
+  },
+  {
+    to: '/contact/',
+    label: 'Contact me',
+  },
+];
+
 export default function Nav(props) {
   return (
     <Container>
-      <li>
-        <LinkWithHover
-          to={`/`}
-          activeStyle={{ color: '#b7b5fc', fontWeight: 900 }}
-        >
-          Home
-        </LinkWithHover>
-      </li>
-      <Separator>|</Separator>
-      <li>
-        <LinkWithHover
-          to={`/gallery/`}
-          activeStyle={{ color: '#b7b5fc', fontWeight: 400 }}
-        >
-          Gallery
-        </LinkWithHover>
-      </li>
-      <Separator>|</Separator>
-      <li>
-        <LinkWithHover
-          to={`#`}
-          activeStyle={{ color: '#b7b5fc', fontWeight: 400 }}
-        >
-          Buy my artwork
-        </LinkWithHover>
-      </li>
-      <Separator>|</Separator>
-      <li>
-        <LinkWithHover
-          to={`/contact/`}
-          activeStyle={{ color: '#b7b5fc', fontWeight: 400 }}
-        >
-          Contact me
-        </LinkWithHover>
-      </li>
+      {links.map((el, i) => (
+        <>
+          <li>
+            <LinkWithHover
+              to={el.to}
+              activeStyle={{ color: '#b7b5fc', fontWeight: 400 }}
+            >
+              {el.label}
+            </LinkWithHover>
+          </li>
+          <Separator>|</Separator>
+        </>
+      ))}
     </Container>
   );
 }

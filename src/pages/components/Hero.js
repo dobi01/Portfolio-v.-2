@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   position: absolute;
   z-index: 100;
-  top: 30%;
+  top: 50%;
   left: 15%;
 `;
 

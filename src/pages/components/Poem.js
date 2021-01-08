@@ -9,10 +9,15 @@ const Container = styled.div`
 `;
 
 const P1 = styled.p`
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 `;
 
 const P2 = styled.p`
+  margin-left: 5rem;
+  margin-bottom: 1rem;
+`;
+
+const P3 = styled.p`
   margin-left: 10rem;
 `;
 
@@ -32,13 +37,13 @@ export default function Poem(props) {
         once again
         <br />
         and for the first time
-        <br />
-        <br />
+      </P1>
+      <P2>
         we are different
         <br />
         we are the same
-      </P1>
-      <P2>
+      </P2>
+      <P3>
         intoxicated by uncertainty and wonder <br />
         slowly we thrive <br />
         <br />
@@ -46,7 +51,7 @@ export default function Poem(props) {
         for sheer vastness <br />
         of an ordinary <br />
         mind
-      </P2>
+      </P3>
     </Container>
   );
 }
