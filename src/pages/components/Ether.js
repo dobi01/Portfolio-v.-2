@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from 'react-three-fiber';
 import { EffectComposer, SSAO } from 'react-postprocessing';
 import { useSpring } from '@react-spring/core';
@@ -111,6 +111,11 @@ export default function Ether(props) {
   });
 
   const color = spring.to([0, 1], ['#007B7B', '#7B0059']);
+
+  useEffect(() => {
+    const cursorType = active ? 'pointer' : 'auto';
+    document.body.style.cursor = cursorType;
+  }, [active]);
 
   return (
     <Canvas

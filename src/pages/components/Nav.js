@@ -11,12 +11,14 @@ const Container = styled.ul`
   list-style-type: none;
 `;
 
-const Separator = styled.span`
-  padding: 0 0.3rem;
-
-  &:last-child {
+const Li = styled.li`
+  &:last-child > span {
     display: none;
   }
+`;
+
+const Separator = styled.span`
+  padding: 0 0.3rem;
 `;
 
 const LinkWithHover = styled(Link)`
@@ -53,17 +55,15 @@ export default function Nav(props) {
   return (
     <Container>
       {links.map((el, i) => (
-        <>
-          <li>
-            <LinkWithHover
-              to={el.to}
-              activeStyle={{ color: '#b7b5fc', fontWeight: 400 }}
-            >
-              {el.label}
-            </LinkWithHover>
-          </li>
+        <Li key={el.to}>
+          <LinkWithHover
+            to={el.to}
+            activeStyle={{ color: '#b7b5fc', fontWeight: 400 }}
+          >
+            {el.label}
+          </LinkWithHover>
           <Separator>|</Separator>
-        </>
+        </Li>
       ))}
     </Container>
   );

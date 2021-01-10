@@ -1,25 +1,55 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
+import styled from 'styled-components';
+import { FaInstagram } from 'react-icons/fa';
 
-const pageStyles = {
-  color: '#232129',
-  padding: '96px',
-  fontFamily: '-apple-system, Roboto, sans-serif, serif',
-};
+import Layout from './components/Layout';
+import ContactCircles from './components/ContactCircles';
 
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-};
+const Container = styled.div`
+  position: absolute;
+  z-index: 100;
+  top: 48%;
+  left: 15%;
+`;
+
+const H1 = styled.h1`
+  font-size: 4.5rem;
+  font-family: Audiowide;
+  color: #b7b5fc;
+  z-index: 10;
+`;
+
+const P = styled.p`
+  position: absolute;
+  top: 30%;
+  right: 10%;
+
+  > svg {
+    display: block;
+    height: 2rem;
+    width: 2rem;
+  }
+`;
 
 const Contact = () => {
   return (
-    <main style={pageStyles}>
+    <Layout>
       <title>Contact</title>
-      <h1 style={headingStyles}>Contact</h1>
-      <Link to="/">Go home</Link>.
-    </main>
+      <Container>
+        <H1>
+          “it was supposed to
+          <br />
+          make you feel
+          <br />
+          something”
+        </H1>
+      </Container>
+      <P>
+        hedone01@gmail.com
+        <FaInstagram />
+      </P>
+      <ContactCircles />
+    </Layout>
   );
 };
 

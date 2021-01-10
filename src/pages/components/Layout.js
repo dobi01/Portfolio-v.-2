@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import '@fontsource/open-sans';
 import '@fontsource/audiowide';
 
+import Nav from './Nav';
 import SEO from './Seo';
 
 const GlobalStyle = createGlobalStyle`
@@ -21,12 +22,15 @@ const GlobalStyle = createGlobalStyle`
     width: 100vw;
     backgroundColor: #f0f0f0;
     backface-visibility: hidden;
+    overflow: hidden !important; 
   }
 `;
 export default function Layout({ children }) {
   return (
     <React.Fragment>
-      <GlobalStyle theme="red" />
+      <GlobalStyle />
+      <SEO title="Traversing the ether" />
+      <Nav />
       {children}
     </React.Fragment>
   );

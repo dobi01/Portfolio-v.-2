@@ -4,7 +4,6 @@ import { useSpring, animated } from 'react-spring';
 import Layout from './components/Layout';
 import Ether from './components/Ether';
 import Hero from './components/Hero';
-import Nav from './components/Nav';
 import Button from './components/Button';
 import Poem from './components/Poem';
 
@@ -47,8 +46,6 @@ export default function App() {
 
   return (
     <Layout>
-      <title>Traversing the ether</title>
-      <Nav />
       <div style={containerStyle}>
         <animated.div style={opacityTo1}>
           <Poem />
