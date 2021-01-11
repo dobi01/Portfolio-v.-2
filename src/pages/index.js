@@ -57,7 +57,7 @@ export default function App() {
       <Button to={`/gallery/`} style={buttonStyle}>
         &lt; explore &gt;
       </Button>
-      <Ether onClicked={onClicked} />
+      <Ether onClicked={onClicked} count={9} />
     </Layout>
   );
 }

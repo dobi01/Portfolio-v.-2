@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { FaInstagram } from 'react-icons/fa';
 
 import Layout from './components/Layout';
-import ContactCircles from './components/ContactCircles';
+// import ContactCircles from './components/ContactCircles';
+import Dobi from './components/Dobi';
 
 const Container = styled.div`
   position: absolute;
@@ -36,19 +37,20 @@ const Contact = () => {
     <Layout>
       <title>Contact</title>
       <Container>
-        <H1>
+        {/* <H1>
           “it was supposed to
           <br />
           make you feel
           <br />
           something”
-        </H1>
+        </H1> */}
       </Container>
       <P>
         hedone01@gmail.com
         <FaInstagram />
       </P>
-      <ContactCircles />
+      <Dobi count={1} />
+      {/* <ContactCircles /> */}
     </Layout>
   );
 };

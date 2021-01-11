@@ -133,7 +133,7 @@ export default function Ether(props) {
         color={color}
       />
       <Swarm
-        count={9}
+        count={props.count}
         onHoverHandle={(isHovered) => onHoverHandle(isHovered)}
         onClickHandle={(isClicked) => onClickHandle(isClicked)}
       />
